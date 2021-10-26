@@ -8,3 +8,5 @@ AVX-512 expands AVX to 512-bit support using a new EVEX prefix encoding proposed
 
 In computing, Streaming SIMD Extensions (SSE) is a single instruction, multiple data (SIMD) instruction set extension to the x86 architecture, designed by Intel and introduced in 1999 in their Pentium III series of Central processing units (CPUs) shortly after the appearance of Advanced Micro Devices (AMD's) 3DNow!. SSE contains 70 new instructions, most of which work on single precision floating-point data. SIMD instructions can greatly increase performance when exactly the same operations are to be performed on multiple data objects. Typical applications are digital signal processing and graphics processing. 
 
+
+dummy
