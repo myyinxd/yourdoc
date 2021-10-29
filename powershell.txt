@@ -1,0 +1,4 @@
+$ma=get-childitem -path d:
+$ma
+$ma.gettype()
+$ma.   -> tab to list attribute
