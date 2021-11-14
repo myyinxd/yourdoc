@@ -1,3 +1,27 @@
 http://www.netlib.org/slatec/src/
 
 http://micro.ustc.edu.cn/Fortran/
+
+
+//computer
+http://www.csit-sun.pub.ro/index.php?op=4&sop=8
+
+//circuit
+https://www.circuitsassembly.com/ca/features-itemid-fix/400-forefront/32845-the-role-of-heterogeneous-integration-in-the-ai-hardware-ecosystem.html
+
+http://www.deepchip.com/items/0588-17.html
+
+//emacs/list books
+https://xiaoguo.net/~books/
+
+//fft
+https://rosettacode.org/wiki/Fast_Fourier_transform#C.2B.2B
+
+//catia
+http://paracax.byu.edu/content/integrating-caa-rade-visual-studio
+
+https://www.ansys.com/products/semiconductors
+https://jupyter.readthedocs.io/en/latest/
+
+
+https://thispointer.com/c11-tutorial/
