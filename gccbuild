@@ -1,0 +1,61 @@
+#0
+./configure -prefix=/home/xxx/mbuild
+make
+make install
+
+#1
+编译gcc/g++源码， dereferencing pointer to incomplete type 'struct ucontext'
+
+
+
+在使用c语言写程序时，可能遇到错误：error ：dereferencing pointer to incomplete type。其实，这个错误是指针指向的结构体类型没有定义。
+
+原因可能有很多，但最多情况可能下面两种：
+
+1，使用库函数或内核等提供的结构体时，没有包含相应的头文件。解决方法很简单，就是包含对应头文件就ok了。
+
+2，若是自己定义的结构体，而且这个结构体恰恰是定义在.c文件中。在这种情况下，在其他.c文件中使用该结构体指针时，也会出现类似错误。
+
+
+#2
+git clone https://gcc.gnu.org/git/gcc.git
+git tag
+git checkout basepoints/gcc-8.2
+
+#3
+apt-get install flex
+wget ftp://gcc.gnu.org/pub/gcc/infrastructure/gmp-6.1.0.tar.bz2
+wget ftp://gcc.gnu.org/pub/gcc/infrastructure/mpfr-3.1.4.tar.bz2
+wget ftp://gcc.gnu.org/pub/gcc/infrastructure/mpc-1.0.3.tar.gz
+
+tar -jxvf gmp-6.1.0.tar.bz2
+cd gmp-6.1.0
+./configure
+make && make install
+
+cd ..
+
+tar -jxvf mpfr-3.1.4.tar.bz2
+cd mpfr-3.1.4
+./configure
+make && make install
+
+cd ..
+
+tar -zxvf mpc-1.0.3.tar.gz
+cd mpc-1.0.3
+./configure
+make && make install
+
+#4
+总结
+
+这里主要总结一下_cdecl、_stdcall、__fastcall三者之间的区别：
+要点	__cdecl	__stdcall	__fastcall
+参数传递方式	右->左	右->左	左边开始的两个不大于4字节（DWORD）的参数分别放在ECX和EDX寄存器，其余的参数自右向左压栈传送
+清理栈方	调用者清理	被调用函数清理	被调用函数清理
+适用场合	C/C++、MFC的默认方式; 可变参数的时候使用;	Win API	要求速度快
+C编译修饰约定	_functionname	_functionname@number	@functionname@number
+————————————————
+版权声明：本文为CSDN博主「啊大1号」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/a3192048/article/details/82084374
