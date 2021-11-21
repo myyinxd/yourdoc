@@ -5,6 +5,7 @@ make install
 
 #1
 编译gcc/g++源码， dereferencing pointer to incomplete type 'struct ucontext'
+struct ucontext *uc_ = context->cfa;修改为struct ucontext_t *uc_ = context->cfa;
 
 
 
