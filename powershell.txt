@@ -6,3 +6,5 @@ $ma.   -> tab to list attribute
 $aa=get-process
 get-member -inputobject $aa[0]
 $bb = get-process | where-object {$_.name -eq "svchost"}
+
+1..4 | foreach {$bb=$_+10;echo $bb}
