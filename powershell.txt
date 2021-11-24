@@ -2,3 +2,7 @@ $ma=get-childitem -path d:
 $ma
 $ma.gettype()
 $ma.   -> tab to list attribute
+
+$aa=get-process
+get-member -inputobject $aa[0]
+$bb = get-process | where-object {$_.name -eq "svchost"}
