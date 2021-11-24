@@ -1,0 +1,31 @@
+#!/bin/csh -f
+echo "SOURCES += " > mqtp0.pro
+find . -name "*.py" >> mqtp0.pro
+sed -i 's/$/ \\/g' mqtp0.pro
+
+
+echo "HEADERS += " > mlog1
+find . -name "*.h" >> mlog1
+find . -name "*.hh" >> mlog1
+find . -name "*.hpp" >> mlog1
+find . -name "*.hxx" >> mlog1
+find . -name "*.H" >> mlog1
+find . -name "*.HH" >> mlog1
+find . -name "*.HPP" >> mlog1
+find . -name "*.HXX" >> mlog1
+sed -i 's/$/ \\/g' mlog1
+
+echo "SOURCES += " > mlog2
+find . -name "*.c" >> mlog2
+find . -name "*.cc" >> mlog2
+find . -name "*.cpp" >> mlog2
+find . -name "*.cxx" >> mlog2
+find . -name "*.C" >> mlog2
+find . -name "*.CC" >> mlog2
+find . -name "*.CPP" >> mlog2
+find . -name "*.CXX" >> mlog2
+sed -i 's/$/ \\/g' mlog2
+
+cat mlog1 > mqtc0.pro
+echo "" >> mqtc0.pro
+cat mlog2 >> mqtc0.pro
