@@ -1,0 +1,35 @@
+#strip
+ 作为一名linux开发人员， 如果没有听说过strip命令， 那是很不应该的。 strip这个单词，
+ 大家应该早就学过了， 你就记住是脱衣服就行了， 别的不要多想。 
+ 在linux中， strip也有脱衣服的含义， 具体就是从特定文件中剥掉一些符号信息和调试信息。
+ 
+ #2
+addr2line的用法
+
+到ndk找到addr2line，例如：
+
+ /Users/yangjun/Library/Android/sdk/ndk/android-ndk-r9d/toolchains/x86-4.8/prebuilt/darwin-x86_64/bin/i686-linux-android-addr2line
+
+然后执行:
+
+./i686-linux-android-addr2line -f -C -e 带符号so的文件路径 地址
+
+ 
+
+ 
+
+示例：
+
+./i686-linux-android-addr2line -f -C -e /Users/yangjun/git/dingtalk/TBLiveStream-Android/artc-core/src/main/obj/local/armeabi-v7a/libTaoLive.so 0x33308
+
+_JNIEnv::NewStringUTF(char const*)
+
+/Users/liuyouxue/Library/Android/sdk/ndk/android-ndk-r9d/platforms/android-16/arch-arm/usr/include/jni.h:873
+
+ 
+
+./i686-linux-android-addr2line -f -C -e /Users/yangjun/git/dingtalk/TBLiveStream-Android/artc-core/src/main/obj/local/armeabi-v7a/libTaoLive.so 0x476e4
+
+TaoLivePublishEngine_Impl::onCsd(int, Buffer_Struct const&)
+
+/Users/liuyouxue/work/android/dingding/c-bug/TBLiveStream-Android/artc-core/src/main/jni/LiveMediaFramework/fw/engine/TaoLivePublishEngine_Impl.cpp:856
