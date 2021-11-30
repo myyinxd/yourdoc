@@ -1,0 +1,18 @@
+$(filter-out PATTERN...,TEXT) 
+函数名称：反过滤函数—filter-out。 
+函数功能：和“filter”函数实现的功能相反。过滤掉字串“TEXT”中所有符合模式
+“PATTERN”的单词，保留所有不符合此模式的单词。可以有多个模式。
+存在多个模式时，模式表达式之间使用空格分割。。 
+返回值：空格分割的“TEXT”字串中所有不符合模式“PATTERN”的字串。 
+函数说明： “filter-out”函数也可以用来去除一个变量中的某些字符串， （实现和
+“filter”函数相反）。 
+示例： 
+objects=main1.o foo.o main2.o bar.o 
+mains=main1.o main2.o 
+ 
+$(filter-out $(mains),$(objects)) 
+实现了去除变量“objects”中“mains”定义的字串（文件名）功能。它的返回值
+为“foo.o bar.o”。
+————————————————
+版权声明：本文为CSDN博主「骆驼日记」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/zhoudengqing/article/details/41777993
