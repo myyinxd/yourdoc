@@ -1,3 +1,4 @@
+#1
 linux下bash高级变量整理
  高级变量
 基本形式
@@ -125,3 +126,71 @@ linux下bash高级变量整理
 
 
 原文地址:http://www.2cto.com/os/201109/103760.html
+
+#2
+https://www.cnblogs.com/lsgxeva/p/10696620.html
+man bash
+
+mkdir /usr/local/src/bash/{old,new,dist}
+= mkdir /usr/local/src/bash/old /usr/local/src/bash/new /usr/local/src/bash/dist
+
+变量扩展
+
+我们知道，${var}的形式可以获取变量var的值，但其实还可以有更多花式玩法。其中～表示用户根目录其实属于 波浪线扩展，这比较常见，不展开介绍了。
+
+下面的每种情况中，word 都要经过波浪线扩展，参数扩展，命令替换和 算术扩展。如果不进行子字符串扩展，bash 测试一个没有定义或值为空的 参数；忽略冒号的结果是只测试未定义的参数。
+
+大致描述下变量扩展的功能：
+扩展	功能
+${var} 	获取变量值
+${!var} 	取变量var的值做新的变量名，再次获取新变量名的值
+${!prefix* 	获取prefix开头的变量名
+${#parameter} 	获取变量长度
+${parameter:-word} 	parameter为空时，使用wrod返回
+${parameter:+word} 	parameter非空时，使用word返回
+${parameter:=word} 	parameter为空时，使用word返回，同时把word赋值给parameter变量
+${parameter:?word} 	parameter为空时，打印错误信息word
+${parameter:offset} 	从offset位置截取字符串
+${parameter:offset:length 	从offset位置截取length长度的字符串
+${parameter#word} 	从头开始删除最短匹配word模式的内容后返回
+${parameter##word} 	从头开始删除最长匹配word模式的内容后返回
+${parameter%word} 	从尾开始删除最短匹配word模式的内容后返回
+${parameter%%word} 	从尾开始删除最长匹配word模式的内容后返回
+${parameter/pattern/string} 	最长匹配pattern的内容替换为string
+${parameter//pattern/string} 	所有匹配pattern的内容替换为string
+
+五、[](test)
+[] 与test命令一样，用于比较值以及检查文件类型。如下：
+1、[ "$A" = 123 ]：是字符串的测试，以测试 $A 是否为 1、2、3 这三个连续的"文字"。
+2、[ "$A" -eq 123 ]：是整数的测试，以测试 $A 是否等于"一百二十三"。
+3、[ -e "$A" ]：是关于文件的测试，以测试 123 这份"文件"是否存在。
+
+六、[[]]
+[[]]可以说是[]的“增强版”，它能够将多个test命令支持的测试组合起来，例如：
+
+# [[ (-d "$HOME") && (-w "$HOME") ]] && echo echo "home is a writable directory"  
+
+home is a writable directory
+
+七、(())
+(())专门来做数值运算，如果表达式求值为 0，则设置退出状态为 1；如果求值为非 0 值，则设置为 0。不需要对 (( 和 )) 之间的操作符转义。算术只对整数进行。除 0 会产生错误，但不会产生溢出。可以执行 C 语言中常见的算术、逻辑和位操作。如下：
+
+# ((i=1+99));echo $i
+100
+
+
+也能：
+
+# i=99;((i++));echo $i
+100
+
+
+除此之外，也可以使用$(())直接进行数值运算，如下：
+
+# echo $((2**3))
+8
+
+
+注意：使用 (( )) 时，不需要空格分隔各值和运算符，使用[]和[[ ]] 时需要用空格分隔各值和运算符。 
+
+
