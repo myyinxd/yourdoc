@@ -1,0 +1,11 @@
+cp -rf  Y.txt mlog
+sed -i 's/ /\n/g' mlog
+cp -rf  Y.txt_ mlog_
+sed -i 's/ /\n/g' mlog_
+
+paste mlog mlog_ > mlog4455
+
+awk '{if ($1-$2>1e-6 || $2-$1>1e-6) print $0 " " $1-$2}' mlog4455 > mlog66
+tail mlog66
+sort mlog66 -k 3 -g > mlog2
+tail mlog2
