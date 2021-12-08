@@ -1,0 +1,20 @@
+##!/bin/bash
+mkdir .a
+cd .a
+ln -s ../a.ind a.ind
+ln -s ../a.cap a.cap
+
+cd ..
+
+awk '{print $1 " " $1 " PAD_" $1 " P VDD 18 1 " $2}' p.map > .a/a.pad
+aa1=`awk 'BEGIN {max = 0} {if ($1+0 > max+0) max=$1; if ($2+0 > max+0) max=$2} END {print max}' .a/a.ind`
+aa2=`awk 'BEGIN {max = 0} {if ($1+0 > max+0) max=$1; if ($2+0 > max+0) max=$2} END {print max}' .a/a.pad`
+if [ $aa1 -gt $aa2 ];then
+aa3=`expr $aa1 + 1`
+else
+aa3=`expr $aa2 + 1`
+fi
+echo $aa1
+echo $aa2
+echo $aa3
+echo "l.exe $aa3 -i .a"
