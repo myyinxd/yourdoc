@@ -1,0 +1,5 @@
+awk '{if ($1>$2){mmid=$1;$1=$2;$2=mmid}; print $1 " " $2 " " $3}' a.ind_debug > mlog
+sort mlog > mlog1
+#awk 'BEGIN {sum=-100;pp1=-100;pp2=-100;} {if(pp1==-100)pp1=$1;if(pp2==-100)pp2=$2;if(pp1==$1&&pp2==$2){if(sum==-100){sum=$3;}else{sum=sum+$3;}}else{print pp1 " " pp2 " " sum;pp1=$1;pp2=$2;sum=$3}} END {print pp1 " " pp2 " " sum}' mlog1 > mlog2
+awk 'BEGIN {sum=-100;pp1=-100;pp2=-100;} {if(pp1==-100)pp1=$1;if(pp2==-100)pp2=$2;if(pp1==$1&&pp2==$2){if(sum==-100){sum=$3;}else{sum=sum+$3;}}else{printf("%d %d %.16g\n",pp1,pp2,sum);pp1=$1;pp2=$2;sum=$3}} END {printf("%d %d %.16g\n", pp1,pp2,sum);}' mlog1 > mlog2
+awk '{print $0 " 0"}' mlog2 > mlog3
