@@ -1,0 +1,8 @@
+f = open("mlog", 'r', True)
+for ii in f:
+    #ii has \n
+    tokens=ii.split()
+    print(' '.join(tokens))
+
+
+f.close()
