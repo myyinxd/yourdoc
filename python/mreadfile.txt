@@ -6,7 +6,7 @@ for ii in f:
     current_node = int(tokens[0])
     allnodes.append(current_node)
     if (index>0):
-        print(str(current_node)+' '+str(allnodes[index/10])+' 1e-3')
+        print(str(current_node)+' '+str(allnodes[index/10])+' 1e-3 0')
     index = index + 1
     #print(' '.join(tokens))
 
