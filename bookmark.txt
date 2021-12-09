@@ -27,3 +27,5 @@ https://jupyter.readthedocs.io/en/latest/
 https://thispointer.com/c11-tutorial/
 
 https://opensource.org
+
+https://gcc.gnu.org/onlinedocs/
