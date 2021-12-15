@@ -1,0 +1,13 @@
+cat tt1
+1 2 3
+2 3 4
+4 5 6
+
+awk 'BEGIN {mmax=-1e30} {if(mmax<$1)mmax=$1} END {print mmax}' tt1
+4
+
+awk 'BEGIN {mmin=1e30} {if(mmin>$1)mmin=$1} END {print mmin}' tt1
+1
+
+awk 'BEGIN {sum=0} {sum=sum+$1} END {print sum}' tt1
+7
