@@ -5,6 +5,19 @@ def mmprint():
         if not ch: break
         print(ord(ch))
     f.close()
+def mmprint1(nn):
+    nnb = 1024*1024*50
+    #nnb = 10
+    nni = 0
+    print('aaa '+str(nn)+' '+str(nnb))
+    f = open("mlog", 'r', True)
+    while True:
+        ch = f.read(1)
+        nni = nni +1
+        if not ch: break
+        if nni<=nn*nnb or nni>(nn+1)*nnb: continue
+        print(ord(ch))
+    f.close()
 
 def mmwrite():
     import struct
