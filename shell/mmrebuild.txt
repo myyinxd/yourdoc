@@ -1,5 +1,5 @@
 #!/bin/csh -f
 rm -rf ../build > & mlog
-qmake cps.pro -r -spec linux-g++ CONFIG+=debug >>& mlog
+qmake *.pro -r -spec linux-g++ CONFIG+=debug >>& mlog
 make -j 32 -k >>& mlog
 make >>& mlog
