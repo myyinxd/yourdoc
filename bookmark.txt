@@ -29,3 +29,7 @@ https://thispointer.com/c11-tutorial/
 https://opensource.org
 
 https://gcc.gnu.org/onlinedocs/
+
+
+//power shell
+https://docs.microsoft.com/en-us/powershell/
