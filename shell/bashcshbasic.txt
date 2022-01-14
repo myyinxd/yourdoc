@@ -1,0 +1,18 @@
+#csh
+set i = 1
+while ($i <= 50)
+  echo "mmm$i"
+eng e.xml sp sp 0
+  @ i++
+end
+
+
+#bash
+for ((i=0;i<1000;++i))
+do
+  echo "mmm$i"
+eng e.xml sp sp 0
+done
+
+
+#bash
