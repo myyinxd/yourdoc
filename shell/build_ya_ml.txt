@@ -1,0 +1,24 @@
+#wget https://github.com/jbeder/yaml-cpp/archive/refs/tags/yaml-cpp-0.6.0.tar.gz
+tar xvfz yaml-cpp-0.6.0.tar.gz
+cp -rf yaml-cpp-yaml-cpp-0.6.0 yaml-cpp-yaml-cpp-0.6.0_abi1
+setenv CC /appls/tools/ext/pkgs/gcc-10.3.0/bin/gcc
+setenv CXX /appls/tools/ext/pkgs/gcc-10.3.0/bin/g++
+
+cd yaml-cpp-yaml-cpp-0.6.0
+mkdir build
+cd build
+setenv CFLAGS "-fPIC -D_GLIBCXX_USE_CXX11_ABI=0"
+cmake ..
+make -j8 VERBOSE=1 >& mlog
+mkdir ../lib
+cp -rf libyaml-cpp.a ../lib
+
+cd ../../
+cd yaml-cpp-yaml-cpp-0.6.0_abi1
+mkdir build
+cd build
+setenv CFLAGS "-fPIC"
+cmake ..
+make -j8 VERBOSE=1 >& mlog
+mkdir ../lib
+cp -rf libyaml-cpp.a ../lib
