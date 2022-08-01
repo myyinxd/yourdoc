@@ -1,0 +1,140 @@
+import os
+print('begin ...')
+print('ss %d %02d %03d' % (1,2, 3))
+import urllib.request
+import urllib
+
+url='http://www1.udel.edu/nag/ohufl18pd/f77/Manual/F11/'
+url='https://passlab.github.io/CSCE513/'
+url='https://passlab.github.io/CSCE569//'
+url='https://passlab.github.io/CSCE790/'
+url='https://passlab.github.io/CSE436536/'
+url='https://www.cs.cmu.edu/~213/lectures/'
+url='https://www.cs.cmu.edu/~213/lectures/f20-lectures/'
+url='https://inst.eecs.berkeley.edu/~cs152/sp18/lectures/'
+url='https://inst.eecs.berkeley.edu/~cs152/sp21/'
+url='http://www.cs.cmu.edu/afs/cs/academic/class/15418-s19/www/lectures/'
+url='https://crypto.stanford.edu/cs155old/cs155-spring10/lectures/'
+url='https://www.cse.psu.edu/~trj1/cse497b-s07/slides/'
+url='https://www.cs.sjtu.edu.cn/~xue-gt/networks/'
+url='https://web2.qatar.cmu.edu/~msakr/15319-s10/lectures/'
+url='https://engineering.purdue.edu/wcchew/ece604f19/Lecture%20Notes/'
+url='https://web.mst.edu/~jfan/slides/'
+url='https://www.csl.cornell.edu/courses/ece5745/handouts/'
+url='https://www.csl.cornell.edu/courses/ece2300/pdf/'
+url='https://www.csl.cornell.edu/courses/cs5620/lectures/'
+url='https://www.csl.cornell.edu/courses/ece2400/handouts/'
+url='https://www.csl.cornell.edu/courses/ece4750/handouts/'
+url='https://www.csl.cornell.edu/courses/ece5750/resources.html'
+url='https://www.csl.cornell.edu/courses/ece5775/schedule.html'
+url='https://si2.epfl.ch/~demichel/publications/mcgraw/powerpoint/index.html'
+url='https://si2.epfl.ch/~demichel/publications/mcgraw/overheads/'
+url='https://liacs.leidenuniv.nl/~stefanovtp/courses/ES/papers/'
+url='https://liacs.leidenuniv.nl/~stefanovtp/courses/DITE/lectures/'
+url='https://www.ifte.de/books/eda/'
+url='http://www.doe.carleton.ca/~pavan/Public/Courses_files/'
+url='https://profile.iiita.ac.in/bibhas.ghoshal/lab_files/'
+url='http://aboutme.samexent.com/classes/fall08/ee5301/Slides/'
+url='https://people.eecs.berkeley.edu/~keutzer/classes/244fa2005/lectures/'
+url='https://cadlab.cs.ucla.edu/~cong/slides/'
+url='https://cadlab.cs.ucla.edu/~cong/slides/asp-dac01_tutorial/'
+url='https://cadlab.cs.ucla.edu/~cong/slides/dac00_tutorial/'
+url='http://users.eecs.northwestern.edu/~haizhou/303/'
+url='https://classes.engineering.wustl.edu/ese461/Lecture/'
+url='https://www.eng.biu.ac.il/temanad/introduction-to-digital-electronic-circuits/'
+url='https://www.eng.biu.ac.il/temanad/digital-integrated-circuits/'
+url='https://www.eng.biu.ac.il/temanad/digital-vlsi-design/'
+url='https://www.eng.biu.ac.il/temanad/hardware-for-deep-learning/'
+url='https://www.eng.biu.ac.il/temanad/mpu-mcu-soc-and-embedded-systems/'
+url='https://www.eng.biu.ac.il/temanad/other-vlsi-eda-lectures/'
+url='http://www.or.uni-bonn.de/~vygen/lectures.html'
+url='http://www.facweb.iitkgp.ac.in/~isg/CAD/'
+url='http://www.facweb.iitkgp.ac.in/~isg/VLSI/index.html'
+url='http://www.facweb.iitkgp.ac.in/~isg/SWITCHING/index.html'
+url='https://limsk.ece.gatech.edu/course/ece6133/'
+url='http://staff.ustc.edu.cn/~chunhua/Optics.htm'
+url='http://poplab.stanford.edu/pdfs/'
+url='https://courses.ece.ubc.ca/579/'
+url='https://inst.eecs.berkeley.edu/~ee130/sp06/lecture.htm'
+url='https://www.chu.berkeley.edu/modern-semiconductor-devices-for-integrated-circuits-chenming-calvin-hu-2010/'
+url='https://inst.eecs.berkeley.edu/~eecs151/sp18/files/'
+#url='https://www.hep.manchester.ac.uk/u/xiaguo/waveoptics/'
+#url='https://www.me.iitb.ac.in/~gandhi/me645/'
+#html = urllib.request.urlopen(url).read()
+import json
+import requests        #导入requests包
+from bs4 import    BeautifulSoup
+
+strhtml = requests.get(url)
+
+if url.endswith('.html'):
+    burl=os.path.basename(url)
+    url=url[0:len(url)-len(burl)]
+if url.endswith('.htm'):
+    burl=os.path.basename(url)
+    url=url[0:len(url)-len(burl)]
+#content = json.loads(strhtml.text)
+soup=BeautifulSoup(strhtml.text,'lxml')
+aa=soup.select('a')
+print('aa',len(aa))
+for bb in aa:
+    if 'href' in bb.__dict__['attrs']:
+        if bb['href'].endswith('.pdf') or bb['href'].endswith('.pptx') or bb['href'].endswith('.ppt'):
+        #if bb['href'].endswith('.pptx') or bb['href'].endswith('.ppt'):
+            print(url+'/'+bb['href'])
+            #continue
+            try:
+                if bb['href'].startswith('http'):
+                    r = requests.get(bb['href'])
+                else:
+                    r = requests.get(url+'/'+bb['href'])
+            except:
+                print('requests.get error')
+                continue
+            #cc=open(bb.text,'wb')
+            cc=open(os.path.basename(bb['href']),'wb')
+            cc.write(r.content)
+            cc.close()
+
+
+#def mtranverse_all(mall):
+#    mall_1 = soup.find_all(mall)
+def find_by_raw(mtext):
+    import re
+    #cc=open('mraw.txt','wt')
+    #cc.write(mtext)
+    #cc.close()
+    tags = re.split('[<>]', mtext)
+    #tags = re.split('aaa', mtext)
+    #mtext.replace('&gt;','mmxxmm')
+    #mtext.replace('&lt;','mmxxmm')
+    #tags=mtext.split('mmxxmm')
+    for onetag in tags:
+        onetag = onetag.replace(' ', '')
+        if 'ahref=' not in onetag:
+            continue
+        onetag = onetag.replace('ahref=', '')
+        if onetag.startswith('"') and onetag.endswith('"'):
+            onetag = onetag[1:-1]
+        if onetag.endswith('.pdf') or onetag.endswith('.pptx') or onetag.endswith('.ppt'):
+            print(url+'/'+onetag)
+        #pass
+            try:
+                if onetag.startswith('http'):
+                    r = requests.get(onetag)
+                else:
+                    r = requests.get(url+'/'+onetag)
+            except:
+                print('requests.get error')
+                continue
+                #cc=open(bb.text,'wb')
+            cc=open(os.path.basename(onetag),'wb')
+            cc.write(r.content)
+            cc.close()
+
+if len(aa)==0:
+    find_by_raw(soup.text[:])
+
+#for aaa in soup.body.children:
+#    print('bbb')
+#    print(aaa)
