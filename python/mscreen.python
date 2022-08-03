@@ -1,0 +1,45 @@
+#pip install  pyautogui
+import pyautogui as pag
+import time
+import hashlib
+screenwidth, screeheight=pag.size()
+print(screenwidth)
+print(screeheight)
+
+#filepath='foo.png'
+#pag.screenshot(filepath, region=(0,0,100,100))
+
+
+
+print('move mouse to left-up point of screenshot')
+time.sleep(5)
+xx1,yy1=pag.position()
+print('left-up: ',xx1,yy1)
+
+print('move mouse to right-low point of screenshot')
+time.sleep(5)
+xx2,yy2=pag.position()
+print('right-low: ',xx2,yy2)
+#pag.typewrite('heihei',1)
+#pag.press('pagedown')
+
+#mdd = dict()
+prehash=''
+for ii in range(5000):
+    if ii != 0:
+        pag.press('pagedown')
+    time.sleep(2)
+    #filepath=str(ii)+'_foo.png'
+    filepath='{0:03d}_foo.png'.format(ii)
+    pag.screenshot(filepath, region=(xx1,yy1,xx2,yy2))
+    with open(filepath,'rb') as f:
+        sha1obj = hashlib.sha1()
+        sha1obj.update(f.read())
+        hash1 = sha1obj.hexdigest()
+        print(hash1, filepath)
+        if hash1 == prehash:
+        #if hash1 in mdd:
+            break
+        #mdd[hash1] = 1
+        prehash = hash1
+        
