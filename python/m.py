@@ -149,7 +149,26 @@ def mmwrite_b():
         fw.write(bb)
     f.close()
     fw.close()
+def mmprint1_1ben(en=''):
+    print('aaa')
+    import base64
+    if en:
+        en=base64.b64encode(en)
+    f = open("mlog", 'r', True)
+    fw = open("mw.txt", 'wb', True)
+    nni = 0
+    while True:
+        bb=f.read(1)
+        if len(bb) <= 0:
+            break
+        if en:
+            bb=chr(ord(bb)^ord(en[(nni*nni)%len(en)]))
 
+        fw.write(bb)
+        nni = nni+1
+    f.close()
+    fw.close()
+    print('bbb')
 #mmwrite()
 #mmprint()
 #print(__name__)
