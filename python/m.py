@@ -155,7 +155,7 @@ def mmprint1_1ben(en=''):
     if en:
         en=base64.b64encode(en)
     f = open("mlog", 'r', True)
-    fw = open("mw.txt", 'wb', True)
+    fw = open("mw1.txt", 'wb', True)
     nni = 0
     while True:
         bb=f.read(1)
