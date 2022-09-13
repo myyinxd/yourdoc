@@ -7,3 +7,5 @@ dell->ssd disk->disk efi partition->ubuntu/grubx64.efi grub.cfg
 a. ->select ubuntu->external usb disk efi partition->ubuntu
 b. ->select debiam->external usb disk efi partition->debiam  
 (please note it is not debian, because if it is debian, will auto entry #b without selecting #a or #b)
+
+dd if=CentOS-7-x86_64-Everything-2009_1.iso of=/dev/sdd2  bs=1M
