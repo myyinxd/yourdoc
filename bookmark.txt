@@ -33,3 +33,8 @@ https://gcc.gnu.org/onlinedocs/
 
 //power shell
 https://docs.microsoft.com/en-us/powershell/
+
+
+http://opencircuitdesign.com/
+
+https://github.com/liyanqing1987/libertyParser/blob/master/libertyParser.py
